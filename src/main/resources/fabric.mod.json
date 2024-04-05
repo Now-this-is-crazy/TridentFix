@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "tridentfix",
+	"version": "${version}",
+	"name": "TridentFix",
+	"description": "TridentFix is a mod that aims to improve the trident while being fully server-side.",
+	"authors": [
+		"Powercyphe"
+	],
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.gg/Dmp2dbyNrs"
+			}
+		}
+	},
+	"contact": {
+		"homepage": "https://modrinth.com/project/tridentfix/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/tridentfix/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"powercyphe.tridentfix.TridentFix"
+		]
+	},
+	"mixins": [
+		"tridentfix.mixins.json"
+	],
+	"depends": {
+		"fabricloader": "*",
+		"minecraft": "~1.20",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}

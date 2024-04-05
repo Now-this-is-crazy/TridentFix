@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "powercyphe.tridentfix.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "PersistentProjectileEntityClassAccess",
+    "PlayerEntityMixin",
+    "TridentEntityMixin",
+    "TridentItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}
