@@ -1,14 +1,11 @@
 package powercyphe.tridentfix.mixin;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import powercyphe.tridentfix.EnchantmentHelper;
+import powercyphe.tridentfix.TridentFix;
 
 /*
  * The following code is sourced from the BEnchantments project by rvbsm.
@@ -42,6 +39,6 @@ public abstract class PlayerEntityMixin {
         @ModifyVariable(method = "attack", at = @At(value = "STORE"), index = 3)
         private float modifyDamage(float value, Entity target) {
             PlayerEntity player = (PlayerEntity) (Object) this;
-                return EnchantmentHelper.getAttackDamage(player.getMainHandStack(), target);
+                return TridentFix.useBedrockImpalingForTridentItem(player.getMainHandStack(), target);
     }
 }

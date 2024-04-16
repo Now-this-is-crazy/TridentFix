@@ -15,8 +15,8 @@
 		}
 	},
 	"contact": {
-		"homepage": "https://modrinth.com/project/tridentfix/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/tridentfix/",
+		"sources": "https://github.com/Now-this-is-crazy/TridentFix"
 	},
 	"license": "MIT",
 	"icon": "assets/tridentfix/icon.png",

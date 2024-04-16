@@ -20,6 +20,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import powercyphe.tridentfix.TridentFix;
 
 @Mixin(TridentEntity.class)
 public abstract class TridentEntityMixin extends ProjectileEntity {
@@ -56,8 +57,8 @@ public abstract class TridentEntityMixin extends ProjectileEntity {
                                 if (owner.getAbilities().creativeMode) {
                                     tridentStack.setCount(0);
                                 }
-                                    if (owner.getInventory().getEmptySlot() != -1 && tridentStack.getCount() >= 1) {
-                                        if (slot == -1 && owner.getOffHandStack().isEmpty()) {
+                                    if ((owner.getInventory().getEmptySlot() != -1 || owner.getOffHandStack().isEmpty())&& tridentStack.getCount() >= 1) {
+                                        if ((slot == -1 || owner.getInventory().getEmptySlot() == -1) && owner.getOffHandStack().isEmpty()) {
                                             owner.equipStack(EquipmentSlot.OFFHAND, tridentStack.copy());
                                         } else {
                                             if (slot == -1) {
@@ -85,7 +86,7 @@ public abstract class TridentEntityMixin extends ProjectileEntity {
 
     @Redirect(method = "onEntityHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;isThundering()Z"))
     private boolean channelingMixin(World world) {
-        return (world.isRaining() || world.isThundering());
+        return TridentFix.channelingDuringRain(world);
     }
 
     /*
@@ -117,7 +118,7 @@ public abstract class TridentEntityMixin extends ProjectileEntity {
 
     @Redirect(method = "onEntityHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/EnchantmentHelper;getAttackDamage(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/EntityGroup;)F"))
     private float onEntityHit$getAttackDamage(ItemStack stack, EntityGroup group, EntityHitResult entityHitResult) {
-            return powercyphe.tridentfix.EnchantmentHelper.getAttackDamage(stack, entityHitResult.getEntity());
+            return TridentFix.useBedrockImpalingForTridentEntity(stack, group, entityHitResult);
     }
 }
 
