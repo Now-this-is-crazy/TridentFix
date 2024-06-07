@@ -3,9 +3,7 @@
   "package": "powercyphe.tridentfix.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "GameruleCommandMixin",
     "LightningRodBlockMixin",
-    "LoadWorldMixin",
     "PersistentProjectileEntityClassAccess",
     "PlayerEntityMixin",
     "TridentEntityMixin",

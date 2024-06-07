@@ -2,9 +2,14 @@ package powercyphe.tridentfix.mixin;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import powercyphe.tridentfix.TridentFix;
 
 /*
@@ -36,7 +41,8 @@ import powercyphe.tridentfix.TridentFix;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin {
-        @ModifyVariable(method = "attack", at = @At(value = "STORE"), index = 3)
+
+    @ModifyVariable(method = "attack", at = @At(value = "STORE"), index = 3)
         private float modifyDamage(float value, Entity target) {
             PlayerEntity player = (PlayerEntity) (Object) this;
                 return TridentFix.useBedrockImpalingForTridentItem(player.getMainHandStack(), target);
