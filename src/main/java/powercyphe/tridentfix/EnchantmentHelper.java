@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.TridentItem;
 
 /*
  * The following code is sourced from the BEnchantments project by rvbsm.
@@ -35,7 +36,7 @@ import net.minecraft.item.ItemStack;
 public class EnchantmentHelper extends net.minecraft.enchantment.EnchantmentHelper {
     public static float getAttackDamage(ItemStack stack, Entity target) {
         if (!target.isLiving()) return getAttackDamage(stack, EntityGroup.DEFAULT);
-        else if (target.isTouchingWaterOrRain()) return getAttackDamage(stack, EntityGroup.AQUATIC);
+        else if (target.isTouchingWaterOrRain() && stack.getItem() instanceof TridentItem) return getAttackDamage(stack, EntityGroup.AQUATIC);
         return getAttackDamage(stack, ((LivingEntity) target).getGroup());
     }
 }
